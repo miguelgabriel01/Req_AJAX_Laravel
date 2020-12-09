@@ -11,7 +11,7 @@
 <body>
 
 
-<form method="post" action="{{ route('admin.login.do') }}">
+<form name="formLogin">
     @csrf
 
     @if($errors->all())
@@ -35,5 +35,18 @@
 
       <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js" integrity="sha384-qlmct0AOBiA2VPZkMY3+2WqkHtIQ9lSdAsAn5RUJD/3vA5MKDgSGcdmIv4ycVxyn" crossorigin="anonymous"></script>
+      <script>
+          $(function(){
+              $('form[name="formLogin"]').submit(function(event){
+                  event.preventDefault();//previni a ação padrão do submite
+
+                  var email = $(this).find('input#email').val();
+
+                  alert('teste' + email);//alerta teste
+
+                //method="post" action="{{ route('admin.login.do') }}"
+              });
+          });
+      </script>
 </body>
 </html>
