@@ -9,7 +9,7 @@
     <title>Form Login</title>
 </head>
 <body>
-    
+
 
 <form method="post" action="{{ route('admin.login.do') }}">
     @csrf
@@ -29,10 +29,11 @@
           <label for="exampleInputPassword1">Senha</label>
           <input type="password" class="form-control" id="password" name="password">
         </div>
-      
+
         <button type="submit" class="btn btn-primary">Entrar</button>
       </form>
 
-    
+      <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js" integrity="sha384-qlmct0AOBiA2VPZkMY3+2WqkHtIQ9lSdAsAn5RUJD/3vA5MKDgSGcdmIv4ycVxyn" crossorigin="anonymous"></script>
 </body>
 </html>
