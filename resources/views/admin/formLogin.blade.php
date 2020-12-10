@@ -14,20 +14,18 @@
 <form name="formLogin">
     @csrf
 
-    @if($errors->all())
-       @foreach ($errors->all() as $error)
-       <div class="alert alert-danger" role="alert">
-       {{$error}}
-      </div>
-       @endforeach
-    @endif
+       <div class="alert alert-danger d-none messageBox"  role="alert"></div>
+       <!-- d-none: (Oculto por padrão) para que os alertas de erro não sejam exibidos quando a pag for carregada pela primeira vez sem a tentativa de login do usuario!
+        
+       messageBox: classe usada como seletor -->
+
         <div class="form-group">
           <label for="exampleInputEmail1">Endereço de Email</label>
-          <input type="email" class="form-control" name="email" id="email" value="gabrielogabriel10@gmail.com" aria-describedby="emailHelp">
+          <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp">
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Senha</label>
-          <input type="password" class="form-control" id="password" name="password">
+          <input type="password" class="form-control" id="password" name="password" value="">
         </div>
 
         <button type="submit" class="btn btn-primary">Entrar</button>
@@ -46,6 +44,12 @@
                      data: $(this).serialize(),//o serialize organiza todos os dados em um array associativo
                      dataType: 'json',//o tipo de dados(array,json)
                      success: function(response){//função de resposta
+                       if(response.success === true){
+                           window.location.href = "{{ route('admin')}}";
+                       }else{
+                           $('.messageBox').removeClass('d-none').html(response.message);//exibe o alrte que por padrão esta com display none e exibe uma msg nele
+                           //alert('Erro:: ' + response.message);
+                       }
                        console.log(response);
                      }
                  });

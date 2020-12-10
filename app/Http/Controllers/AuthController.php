@@ -34,6 +34,7 @@ class AuthController extends Controller
             $login['success'] = false; //false pq o usuario n conseguiu fazer o login
             $login['message'] = "O Email informado não é valido!";
             echo json_encode($login); //converte a variavel em json
+            return;
         }
         $credentials = [
             'email' => $request->email,
@@ -46,7 +47,7 @@ class AuthController extends Controller
             $login['success'] = true; //true pq o usuario conseguiu fazer o login
             //$login['message'] = "O Email informado não é valido!";//não tem msg pq o controller vai apenas fazer o redirecionamento
             echo json_encode($login); //converte a variavel em json
-
+            return;
         }
 
         //return redirect()->back()->withInput()->withErrors(['Os dados informados não conferem']);
@@ -54,8 +55,7 @@ class AuthController extends Controller
         $login['success'] = false; //false pq o usuario n conseguiu se logar
         $login['message'] = "Os dados informados não conferem!";
         echo json_encode($login); //converte a variavel em json
-
-
+        return;
     }
 
     public function logout()
