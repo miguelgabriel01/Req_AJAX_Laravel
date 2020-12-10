@@ -40,10 +40,15 @@
               $('form[name="formLogin"]').submit(function(event){
                   event.preventDefault();//previni a ação padrão do submite
 
-                  var email = $(this).find('input#email').val();
-
-                  alert('teste' + email);//alerta teste
-
+                 $.ajax({
+                     url: "{{ route('admin.login.do') }}",//rota que receberá os dados do formulario
+                     type: "post",//o tipo de requisição(GET,POST)
+                     data: $(this).serialize(),//o serialize organiza todos os dados em um array associativo
+                     dataType: 'json',//o tipo de dados(array,json)
+                     success: function(response){//função de resposta
+                       console.log(response);
+                     }
+                 });
                 //method="post" action="{{ route('admin.login.do') }}"
               });
           });
